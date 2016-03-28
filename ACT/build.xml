@@ -1,0 +1,27 @@
+
+
+<project basedir="." default="parse" name="ACT">
+        <property name="src" location="${basedir}"/>   
+        <property name="cupJar" location="${basedir}/java-cup-11b.jar"/>
+		<property name="lexJar" location="${basedir}/jlex.jar"/>
+	    <description>
+        	Build File for Compiler Project
+    	</description>
+		
+		
+		<target name="command_exec">
+			<exec executable="src/parser/lexer.sh"></exec>
+		</target>
+		
+		<target name="generate_parser" depends="command_exec" >
+			<java jar="${cupJar}" dir="${basedir}/src/parser" input="${basedir}/src/parser/ACT3.cup" fork="true" failonerror="true">
+			</java>
+		</target>
+
+		<target name="compile" depends="generate_parser" >
+			<javac classpath="${basedir}/java-cup-11b.jar" includeantruntime="false" srcdir="${basedir}/src" destdir="${basedir}/bin" ></javac>
+		</target>
+	<target name="parse" depends="compile">
+		<java classpath="${basedir}/java-cup-11b.jar:${basedir}/bin" classname="parser.parser" input="${basedir}/src/parser/statechart.sc"/>
+	</target>
+</project>
