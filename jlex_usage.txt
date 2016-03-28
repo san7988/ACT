@@ -1,0 +1,15 @@
+1) Download the JLex.jar  
+2) Save it in your system and add the path to the jar to your classpath :
+
+	- I saved it in : /usr/share/java/JLex.jar
+
+	- Execute this : CLASSPATH="/usr/share/java/JLex.jar:$CLASSPATH"
+			 export CLASSPATH
+
+3) prepare the java file from the jlex file as : java JLex.Main <filename>.lex
+4) Rename the java file thus created to Yylex.java as : mv ACT3.lex.java Yylex.java
+5) DOwnload the jar for cup : http://www2.cs.tum.edu/projects/cup/install.php
+6) run the cup file : java -jar java-cup-11b.jar <filename>.cup   (The jar file for cup should be in the same directory or else provde the       absolute path for the jar)
+7) step 7 creates sym.java and parser.java
+8) Compile the java files thus created for lexer and parser as : javac -cp java-cup-11b.jar -d . parser.java sym.java Yylex.java
+9) run the parser : java -cp java-cup-11b.jar ACTTest.parser
