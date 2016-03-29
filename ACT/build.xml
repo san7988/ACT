@@ -5,23 +5,32 @@
         <property name="cupJar" location="${basedir}/java-cup-11b.jar"/>
 		<property name="lexJar" location="${basedir}/jlex.jar"/>
 	    <description>
-        	Build File for Compiler Project
+        	Build File for ACT Project
     	</description>
 		
-		
+		<!-- Target to create the lexer -->
+		<!-- It creates the .java file for the lexer-->
 		<target name="command_exec">
 			<exec executable="src/parser/lexer.sh"></exec>
 		</target>
 		
+		<!-- Target to create the parser-->
+		<!-- It creates the .java file for the parser -->
 		<target name="generate_parser" depends="command_exec" >
 			<java jar="${cupJar}" dir="${basedir}/src/parser" input="${basedir}/src/parser/ACT3.cup" fork="true" failonerror="true">
 			</java>
 		</target>
+		
 
+		<!-- Target to compile the lexer and parser-->
+		
 		<target name="compile" depends="generate_parser" >
 			<javac classpath="${basedir}/java-cup-11b.jar" includeantruntime="false" srcdir="${basedir}/src" destdir="${basedir}/bin" ></javac>
 		</target>
-	<target name="parse" depends="compile">
+	
+
+		<!-- Target to parse the input-->
+		<target name="parse" depends="compile">
 		<java classpath="${basedir}/java-cup-11b.jar:${basedir}/bin" classname="parser.parser" input="${basedir}/src/parser/statechart.sc"/>
 	</target>
 </project>
