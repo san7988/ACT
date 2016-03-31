@@ -1,6 +1,0 @@
-package graph;
-
-public class Action {
-	public Transition t;
-	public Expression e;
-}

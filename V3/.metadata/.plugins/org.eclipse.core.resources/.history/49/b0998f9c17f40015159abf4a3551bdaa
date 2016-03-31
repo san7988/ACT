@@ -1,8 +1,0 @@
-package graph;
-
-import java.util.ArrayList;
-
-public class Guard {
-	public Transition t;
-	public ArrayList<Expression> exp;
-}
