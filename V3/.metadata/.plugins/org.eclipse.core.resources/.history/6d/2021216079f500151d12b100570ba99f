@@ -1,0 +1,37 @@
+package graph;
+
+import java.util.ArrayList;
+
+public class Collection {
+	private static ArrayList<State> stateList;
+	private static ArrayList<Transition> transitionList;
+	private static ArrayList<Expression> expressionList;
+	private static ArrayList<Guard> guardList;
+	
+	public static void addState(State state){
+		stateList.add(state);
+	}
+	public static void addTransition(Transition transition){
+		transitionList.add(transition);		
+	}
+	public static void addExpression(Expression expression){
+		expressionList.add(expression);
+	}
+	public static void addGuard(Guard guard){
+		guardList.add(guard);
+	}
+	
+	public static boolean hasState(INode state){
+		if(stateList.contains(state))
+			return true;
+		return false;
+	}
+	public INode getStateById(int id)
+	{
+		int i;
+		for(i=0;i<stateList.size();i++)
+			if(this.stateList.get(i).getId()==id)
+				break;
+		return this.mNodes.get(i);
+	}
+}

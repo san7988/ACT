@@ -1,0 +1,21 @@
+package graph;
+
+import java.util.ArrayList;
+
+public class Guard {
+	private Transition transition;
+	private ArrayList<Expression> expGuardList;
+	
+	public Transition getTransition() {
+		return transition;
+	}
+	public void setTransition(Transition t) {
+		this.transition = t;
+	}
+	public ArrayList<Expression> getExpGuardList() {
+		return exp;
+	}
+	public void setExpGuardList(ArrayList<Expression> exp) {
+		this.exp = exp;
+	}
+}

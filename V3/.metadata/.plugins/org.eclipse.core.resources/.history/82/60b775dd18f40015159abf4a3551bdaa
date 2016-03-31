@@ -1,0 +1,10 @@
+package graph;
+
+public class Expression {
+	private Guard guard;
+	public Expression(Guard g){
+		if(g!=null){
+			
+		}
+	}
+}

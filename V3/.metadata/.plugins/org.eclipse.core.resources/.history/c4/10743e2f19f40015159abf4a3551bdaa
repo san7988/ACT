@@ -1,0 +1,16 @@
+package graph;
+
+public class Expression {
+	private Guard guard;
+	public Expression(Guard g){
+		if(g!=null){
+			g.addExpression(this);
+			this.guard = g;
+		}
+		else{
+			Guard g1 = new Guard();
+			g1.addExpression(e);
+			this.guard = g1;
+		}
+	}
+}

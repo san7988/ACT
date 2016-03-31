@@ -1,0 +1,64 @@
+package graph;
+
+import java.util.ArrayList;
+
+public class Transition extends Edge {
+	private String trigger;
+	private ArrayList<String> guard;
+	private String action;
+	public Transition(IGraph stateChart, INode stateFrom, INode stateTo) throws Exception {
+		super(stateChart, stateFrom, stateTo);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public IGraph getStateChart() {
+		return this.mGraph;
+	}
+
+	public void setStateChart(IGraph graph) {
+		this.mGraph = graph;
+	}
+
+	public INode getStateFrom() {
+		return this.mTail;
+	}
+	
+	public void setStateFrom(INode state) {
+		mTail = state;
+	}
+
+	public INode getStateTo() {
+		return this.mHead;
+	}
+
+	public void setStateTo(INode state) {
+		mHead = state;
+	}
+
+	public int getTransitionId() {
+		return edgeId;
+	}
+
+	public void setTransitionId(int edgeId) {
+		this.edgeId = edgeId;
+	}
+	
+	public String getTrigger() {
+		return trigger;
+	}
+	public void setTrigger(String trigger) {
+		this.trigger = trigger;
+	}
+	public ArrayList<String> getGuard() {
+		return guard;
+	}
+	public void setGuard(ArrayList<String> guard) {
+		this.guard = guard;
+	}
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
+}

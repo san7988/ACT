@@ -1,0 +1,6 @@
+package graph;
+
+public class Guard {
+	public Transition t;
+	public Expression e;
+}

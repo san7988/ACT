@@ -1,0 +1,23 @@
+package graph;
+
+public class BinaryExpression extends Expression{
+	public BinaryExpression(Guard g) {
+		super(g);
+		
+	}
+	private String lhs;
+	private String rhs;
+	public String getLhs() {
+		return lhs;
+	}
+	public void setLhs(String lhs) {
+		this.lhs = lhs;
+	}
+	public String getRhs() {
+		return rhs;
+	}
+	public void setRhs(String rhs) {
+		this.rhs = rhs;
+	}
+	
+}

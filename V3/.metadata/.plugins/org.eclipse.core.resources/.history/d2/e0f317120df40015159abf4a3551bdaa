@@ -1,0 +1,13 @@
+package graph;
+
+public class Expression {
+	private String lhs;
+	private String rhs;
+	public String getLhs() {
+		return lhs;
+	}
+	public void setLhs(String lhs) {
+		this.lhs = lhs;
+	}
+	
+}

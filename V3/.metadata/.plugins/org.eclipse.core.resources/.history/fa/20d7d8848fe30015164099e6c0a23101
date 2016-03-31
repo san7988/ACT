@@ -1,0 +1,14 @@
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.lang.Exception;
+
+public class Text2Data {
+
+	public static void main(String[] args) throws Exception {
+		FileInputStream fis = new FileInputStream("C:\Data\DRM\Test project\Project\Text2Class\src\spec.sc");
+		DataInputStream dis = new DataInputStream(fis);
+		String s = dis.readUTF();
+		System.out.println(s);
+	}
+
+}

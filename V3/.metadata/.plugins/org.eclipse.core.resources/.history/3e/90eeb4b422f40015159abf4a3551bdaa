@@ -1,0 +1,21 @@
+package graph;
+
+import java.util.ArrayList;
+
+public class Collection {
+	private ArrayList<State> stateList;
+	private ArrayList<Transition> transitionList;
+	private ArrayList<Expression> expressionList;
+	private ArrayList<Guard> guardList;
+	
+	public void addState(State state){
+		stateList.add(state);
+	}
+	public void addTransition(Transition transition){
+		transitionList.add(transition);		
+	}
+	public void addExpression(Expression expression){
+		expressionList.add(expression);
+	}
+	
+}

@@ -1,0 +1,13 @@
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+public class Text2Data {
+
+	public static void main(String[] args) throws Exception {
+		FileInputStream fis = new FileInputStream("spec.sc");
+		DataInputStream dis = new DataInputStream(fis);
+		String s = dis.readUTF();
+	}
+
+}
