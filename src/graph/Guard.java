@@ -1,10 +1,11 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Guard {
 	private Transition transition;
-	private ArrayList<Expression> expGuardList;
+	private ArrayList<Operation> expGuardList = new ArrayList<Operation>();
 	
 	public Transition getTransition() {
 		return transition;
@@ -12,16 +13,16 @@ public class Guard {
 	public void setTransition(Transition t) {
 		this.transition = t;
 	}
-	public ArrayList<Expression> getExpGuardList() {
+	public ArrayList<Operation> getExpGuardList() {
 		return expGuardList;
 	}
-	public void setExpGuardList(ArrayList<Expression> exp) {
+	public void setExpGuardList(ArrayList<Operation> exp) {
 		this.expGuardList = exp;
 	}
-	public void addExpression(Expression e){
+	public void addExpression(Operation e){
 		expGuardList.add(e);
 	}
-	public Guard(Transition t) throws Exception{
-		this.transition = t;
+	public Guard(List<Operation> list) throws Exception{
+		this.expGuardList = (ArrayList<Operation>) list;
 	}
 }

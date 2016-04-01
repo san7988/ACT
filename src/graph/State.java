@@ -1,15 +1,20 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class State extends Node {
 	private String name;
 	private String desc;
-	private String[] input;
+	ArrayList<String> input;
 	//private boolean[] inputBool;	//unary
-	private String[] clickable;
-	public State() {
+	ArrayList<String> clickable;
+	public State(String stateName, String stateDesc, ArrayList<String> stateInput, ArrayList<String> stateClickable) {
 		super();
+		this.name = stateName;
+		this.desc = stateDesc;
+		this.input = stateInput;
+		this.clickable = stateClickable;
 	}
 
 	public String getName() {
@@ -24,16 +29,16 @@ public class State extends Node {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-	public String[] getInput() {
+	public ArrayList<String> getInput() {
 		return input;
 	}
-	public void setInput(String[] input) {
+	public void setInput(ArrayList<String> input) {
 		this.input = input;
 	}
-	public String[] getClickable() {
+	public ArrayList<String> getClickable() {
 		return clickable;
 	}
-	public void setClickable(String[] clickable) {
+	public void setClickable(ArrayList<String> clickable) {
 		this.clickable = clickable;
 	}
 	
