@@ -2,6 +2,10 @@ package parser;
 import java_cup.runtime.*;
 import stateChartToGraph.Expression;
 import stateChartToGraph.Action;
+import graph.BinaryOperation;
+import graph.Operation;
+import graph.Guard;
+import graph.Collection;
 
 parser code {:
 	public static void main(String args[]) throws Exception {
@@ -14,17 +18,53 @@ terminal String ID;
 terminal Integer NUMBER;
 
 non terminal system,states,state,transition,transitions,source,dest,guard,acti;
-non terminal Expression exp;
+non terminal BinaryOperation exp;
 
-system ::= SYSTEM COLON ID LBRACE states:s1 transitions RBRACE {: System.out.println("Yoooo"); :};
-states ::= states state {: System.out.println("Yo"); :}| ;
-state ::= STATE COLON ID LBRACE RBRACE {: System.out.println("state in parser"); :} ;
-transitions ::= transitions transition {: System.out.println("Yo"); :} | ;
-transition ::= TRANSITION COLON ID LBRACE source:src dest:des guard:grd acti:act RBRACE {: System.out.println("trans in parser"); :} ;
-source ::= SOURCE COLON ID {: System.out.println("src in parser"); :} ;
-dest ::= DEST COLON ID {: System.out.println("dest in parser"); :} ;
-guard ::= GUARD COLON exp:expr {: System.out.println("guard in parser"); :} ;
-acti ::= ACTI COLON exp:expr {: Action act=new Action(expr); System.out.println(act.toString());System.out.println("action in parser"); :} ;
-exp ::= ID:id EQUAL NUMBER:num {: RESULT=new Expression(id,num,"=");System.out.println(RESULT.toString()); System.out.println("exp in parser"); :} ;
+system ::= SYSTEM COLON ID LBRACE states:s1 transitions RBRACE {:
+														 System.out.println("Yoooo"); 
+														 :};
+
+states ::= states state {: 
+					System.out.println("Yo"); 
+					:}
+					| ;
+
+state ::= STATE COLON ID LBRACE RBRACE {: 
+								System.out.println("state in parser"); 
+								:} ;
+
+transitions ::= transitions transition {:
+									 System.out.println("Yo"); 
+									 :}
+									  | ;
+
+transition ::= TRANSITION COLON ID LBRACE source:src dest:des guard:grd acti:act RBRACE {: 	
+																		System.out.println("trans in parser"); 
+																		:} ;
+
+source ::= SOURCE COLON ID {: 
+					System.out.println("src in parser"); 
+					:} ;
+
+dest ::= DEST COLON ID {: 
+					System.out.println("dest in parser"); 
+					:} ;
+
+guard ::= GUARD COLON exp:expr {: 
+						Guard g1=new Guard(Collection.getOperationList());
+						System.out.println(g1);
+						System.out.println("guard in parser"); 
+						:} ;
+
+acti ::= ACTI COLON exp:expr {: 
+						System.out.println("action in parser"); 
+						:} ;
+
+exp ::= ID:id1 EQUAL ID:id2 {: 
+						Operation bin1=new BinaryOperation(id1,"=",id2);
+						Collection.addOperation(bin1);
+						System.out.println(bin1.toString());
+						System.out.println("exp in parser"); 
+						:} ;
 
 

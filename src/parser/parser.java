@@ -8,6 +8,10 @@ package parser;
 import java_cup.runtime.*;
 import stateChartToGraph.Expression;
 import stateChartToGraph.Action;
+import graph.BinaryOperation;
+import graph.Operation;
+import graph.Guard;
+import graph.Collection;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20150930 (SVN rev 66) generated parser.
@@ -59,7 +63,7 @@ public class parser extends java_cup.runtime.lr_parser {
     "\002\000\004\017\031\001\002\000\004\015\ufff8\001\002" +
     "\000\004\016\042\001\002\000\004\006\034\001\002\000" +
     "\004\017\035\001\002\000\004\007\037\001\002\000\004" +
-    "\016\ufff7\001\002\000\004\020\040\001\002\000\006\005" +
+    "\016\ufff7\001\002\000\004\017\040\001\002\000\006\005" +
     "\ufff5\016\ufff5\001\002\000\004\005\045\001\002\000\004" +
     "\006\043\001\002\000\004\017\035\001\002\000\004\005" +
     "\ufff6\001\002\000\006\005\ufffa\012\ufffa\001\002\000\004" +
@@ -162,7 +166,9 @@ class CUP$parser$actions {
 		int s1left = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int s1right = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		Object s1 = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-		 System.out.println("Yoooo"); 
+		
+														 System.out.println("Yoooo"); 
+														 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("system",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -185,7 +191,9 @@ class CUP$parser$actions {
           case 2: // states ::= states state 
             {
               Object RESULT =null;
-		 System.out.println("Yo"); 
+		 
+					System.out.println("Yo"); 
+					
               CUP$parser$result = parser.getSymbolFactory().newSymbol("states",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -203,7 +211,9 @@ class CUP$parser$actions {
           case 4: // state ::= STATE COLON ID LBRACE RBRACE 
             {
               Object RESULT =null;
-		 System.out.println("state in parser"); 
+		 
+								System.out.println("state in parser"); 
+								
               CUP$parser$result = parser.getSymbolFactory().newSymbol("state",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -212,7 +222,9 @@ class CUP$parser$actions {
           case 5: // transitions ::= transitions transition 
             {
               Object RESULT =null;
-		 System.out.println("Yo"); 
+		
+									 System.out.println("Yo"); 
+									 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("transitions",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -242,7 +254,9 @@ class CUP$parser$actions {
 		int actleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int actright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object act = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
-		 System.out.println("trans in parser"); 
+		 	
+																		System.out.println("trans in parser"); 
+																		
               CUP$parser$result = parser.getSymbolFactory().newSymbol("transition",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -251,7 +265,9 @@ class CUP$parser$actions {
           case 8: // source ::= SOURCE COLON ID 
             {
               Object RESULT =null;
-		 System.out.println("src in parser"); 
+		 
+					System.out.println("src in parser"); 
+					
               CUP$parser$result = parser.getSymbolFactory().newSymbol("source",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -260,7 +276,9 @@ class CUP$parser$actions {
           case 9: // dest ::= DEST COLON ID 
             {
               Object RESULT =null;
-		 System.out.println("dest in parser"); 
+		 
+					System.out.println("dest in parser"); 
+					
               CUP$parser$result = parser.getSymbolFactory().newSymbol("dest",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -271,8 +289,12 @@ class CUP$parser$actions {
               Object RESULT =null;
 		int exprleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exprright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		Expression expr = (Expression)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 System.out.println("guard in parser"); 
+		BinaryOperation expr = (BinaryOperation)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 
+						Guard g1=new Guard(Collection.getOperationList());
+						System.out.println(g1);
+						System.out.println("guard in parser"); 
+						
               CUP$parser$result = parser.getSymbolFactory().newSymbol("guard",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -283,23 +305,30 @@ class CUP$parser$actions {
               Object RESULT =null;
 		int exprleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exprright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		Expression expr = (Expression)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 Action act=new Action(expr); System.out.println(act.toString());System.out.println("action in parser"); 
+		BinaryOperation expr = (BinaryOperation)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 
+						System.out.println("action in parser"); 
+						
               CUP$parser$result = parser.getSymbolFactory().newSymbol("acti",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 12: // exp ::= ID EQUAL NUMBER 
+          case 12: // exp ::= ID EQUAL ID 
             {
-              Expression RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-		int numleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
-		int numright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
-		Integer num = (Integer)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
-		 RESULT=new Expression(id,num,"=");System.out.println(RESULT.toString()); System.out.println("exp in parser"); 
+              BinaryOperation RESULT =null;
+		int id1left = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int id1right = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String id1 = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		int id2left = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int id2right = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String id2 = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 
+						Operation bin1=new BinaryOperation(id1,"=",id2);
+						Collection.addOperation(bin1);
+						System.out.println(bin1.toString());
+						System.out.println("exp in parser"); 
+						
               CUP$parser$result = parser.getSymbolFactory().newSymbol("exp",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

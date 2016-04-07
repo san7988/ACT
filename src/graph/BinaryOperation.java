@@ -29,4 +29,8 @@ public class BinaryOperation extends Operation{
 	public void setOp(String op) {
 		this.op = op;
 	}
+	public String toString(){
+		return "This is in BinaryOperation class :"+this.lhs+" "+this.rhs+" "+this.op;
+	}
+
 }

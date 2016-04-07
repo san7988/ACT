@@ -25,4 +25,7 @@ public class Guard {
 	public Guard(List<Operation> list) throws Exception{
 		this.expGuardList = (ArrayList<Operation>) list;
 	}
+	public String dispExp(){
+		return "In Guard class :"+this.expGuardList.get(0).toString();
+		}
 }
