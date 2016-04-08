@@ -32,7 +32,7 @@ public class Collection {
 		return guardList;
 	}
 	public static void addGuard(Guard guard){
-		System.out.println("Hi Dude");
+		//System.out.println("Hi Dude");
 		guardList.add(guard);
 	}
 	
