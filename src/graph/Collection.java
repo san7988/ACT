@@ -11,6 +11,7 @@ public class Collection {
 	private static ArrayList<Guard> guardList = new ArrayList<Guard>();
 	
 	public static List<State> getStateList() {
+		System.out.println("Get State List");
 		return stateList;
 	}
 	public static void addState(State state){
