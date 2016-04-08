@@ -6,6 +6,9 @@ import graph.BinaryOperation;
 import graph.Operation;
 import graph.Guard;
 import graph.Collection;
+import graph.State;
+import graph.StateChart;
+import graph.Transition;
 
 parser code {:
 	public static void main(String args[]) throws Exception {
@@ -17,36 +20,49 @@ terminal LBRACE,RBRACE,COLON,EQUAL,SYSTEM,STATE,TRANSITION,SOURCE,DEST,GUARD,ACT
 terminal String ID;
 terminal Integer NUMBER;
 
-non terminal system,states,state,transition,transitions,source,dest,guard,acti;
+non terminal states,transitions,acti;
 non terminal BinaryOperation exp;
+non terminal Guard guard;
+non terminal State source;
+non terminal State dest;
+non terminal State state;
+non terminal StateChart system;
+non terminal Transition transition;
 
-system ::= SYSTEM COLON ID LBRACE states:s1 transitions RBRACE {:
+system ::= SYSTEM COLON ID LBRACE states:s1 transitions RBRACE {: 
+														 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
 														 System.out.println("Yoooo"); 
 														 :};
 
-states ::= states state {: 
+states ::= states state:sta {: 
+					Collection.addState(sta);
 					System.out.println("Yo"); 
 					:}
 					| ;
 
-state ::= STATE COLON ID LBRACE RBRACE {: 
+state ::= STATE COLON ID:id LBRACE RBRACE {: 
+								RESULT=new State(id,null,null,null);
 								System.out.println("state in parser"); 
 								:} ;
 
-transitions ::= transitions transition {:
+transitions ::= transitions transition:trans {:
+									 Collection.addTransition(trans);
 									 System.out.println("Yo"); 
 									 :}
 									  | ;
 
-transition ::= TRANSITION COLON ID LBRACE source:src dest:des guard:grd acti:act RBRACE {: 	
+transition ::= TRANSITION COLON ID:id LBRACE source:src dest:des guard:grd acti:act RBRACE {: 	
+																		RESULT=new Transition(id,null,src,des,null,null,null);
 																		System.out.println("trans in parser"); 
 																		:} ;
 
-source ::= SOURCE COLON ID {: 
+source ::= SOURCE COLON ID:id {: 
+					RESULT=Collection.getStateByName(id);
 					System.out.println("src in parser"); 
 					:} ;
 
-dest ::= DEST COLON ID {: 
+dest ::= DEST COLON ID:id {: 
+					RESULT=Collection.getStateByName(id);
 					System.out.println("dest in parser"); 
 					:} ;
 

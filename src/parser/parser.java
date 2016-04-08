@@ -12,6 +12,9 @@ import graph.BinaryOperation;
 import graph.Operation;
 import graph.Guard;
 import graph.Collection;
+import graph.State;
+import graph.StateChart;
+import graph.Transition;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20150930 (SVN rev 66) generated parser.
@@ -37,11 +40,11 @@ public class parser extends java_cup.runtime.lr_parser {
   /** Production table. */
   protected static final short _production_table[][] = 
     unpackFromStrings(new String[] {
-    "\000\015\000\002\002\011\000\002\002\004\000\002\003" +
-    "\004\000\002\003\002\000\002\004\007\000\002\006\004" +
-    "\000\002\006\002\000\002\005\013\000\002\007\005\000" +
-    "\002\010\005\000\002\011\005\000\002\012\005\000\002" +
-    "\013\005" });
+    "\000\015\000\002\012\011\000\002\002\004\000\002\002" +
+    "\004\000\002\002\002\000\002\011\007\000\002\003\004" +
+    "\000\002\003\002\000\002\013\013\000\002\007\005\000" +
+    "\002\010\005\000\002\006\005\000\002\004\005\000\002" +
+    "\005\005" });
 
   /** Access to production table. */
   public short[][] production_table() {return _production_table;}
@@ -77,18 +80,18 @@ public class parser extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\051\000\004\002\004\001\001\000\002\001\001\000" +
+    "\000\051\000\004\012\004\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\004\003\011\001\001\000\006\004\013\006" +
-    "\014\001\001\000\002\001\001\000\002\001\001\000\004" +
-    "\005\017\001\001\000\002\001\001\000\002\001\001\000" +
+    "\001\001\000\004\002\011\001\001\000\006\003\014\011" +
+    "\013\001\001\000\002\001\001\000\002\001\001\000\004" +
+    "\013\017\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\004" +
     "\007\024\001\001\000\002\001\001\000\004\010\025\001" +
-    "\001\000\004\011\031\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\004\012\040\001\001\000" +
-    "\002\001\001\000\004\013\035\001\001\000\002\001\001" +
+    "\001\000\004\006\031\001\001\000\002\001\001\000\002" +
+    "\001\001\000\002\001\001\000\004\004\040\001\001\000" +
+    "\002\001\001\000\004\005\035\001\001\000\002\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
-    "\002\001\001\000\002\001\001\000\004\013\043\001\001" +
+    "\002\001\001\000\002\001\001\000\004\005\043\001\001" +
     "\000\002\001\001\000\002\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
     "\001\001\000\002\001\001" });
@@ -162,14 +165,15 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 0: // system ::= SYSTEM COLON ID LBRACE states transitions RBRACE 
             {
-              Object RESULT =null;
+              StateChart RESULT =null;
 		int s1left = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int s1right = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
 		Object s1 = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
-		
+		 
+														 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
 														 System.out.println("Yoooo"); 
 														 
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("system",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("system",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
@@ -179,7 +183,7 @@ class CUP$parser$actions {
               Object RESULT =null;
 		int start_valleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int start_valright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
-		Object start_val = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		StateChart start_val = (StateChart)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		RESULT = start_val;
               CUP$parser$result = parser.getSymbolFactory().newSymbol("$START",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -191,10 +195,14 @@ class CUP$parser$actions {
           case 2: // states ::= states state 
             {
               Object RESULT =null;
+		int staleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int staright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		State sta = (State)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
+					Collection.addState(sta);
 					System.out.println("Yo"); 
 					
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("states",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("states",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
@@ -203,18 +211,22 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("states",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("states",0, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // state ::= STATE COLON ID LBRACE RBRACE 
             {
-              Object RESULT =null;
+              State RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		 
+								RESULT=new State(id,null,null,null);
 								System.out.println("state in parser"); 
 								
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("state",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("state",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
@@ -222,10 +234,14 @@ class CUP$parser$actions {
           case 5: // transitions ::= transitions transition 
             {
               Object RESULT =null;
+		int transleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int transright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Transition trans = (Transition)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		
+									 Collection.addTransition(trans);
 									 System.out.println("Yo"); 
 									 
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("transitions",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("transitions",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
@@ -234,38 +250,46 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("transitions",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("transitions",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 7: // transition ::= TRANSITION COLON ID LBRACE source dest guard acti RBRACE 
             {
-              Object RESULT =null;
+              Transition RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-6)).value;
 		int srcleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).left;
 		int srcright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).right;
-		Object src = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
+		State src = (State)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
 		int desleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).left;
 		int desright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).right;
-		Object des = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
+		State des = (State)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
 		int grdleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).left;
 		int grdright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)).right;
-		Object grd = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
+		Guard grd = (Guard)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-2)).value;
 		int actleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
 		int actright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object act = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		 	
+																		RESULT=new Transition(id,null,src,des,null,null,null);
 																		System.out.println("trans in parser"); 
 																		
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("transition",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("transition",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 8: // source ::= SOURCE COLON ID 
             {
-              Object RESULT =null;
+              State RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
+					RESULT=Collection.getStateByName(id);
 					System.out.println("src in parser"); 
 					
               CUP$parser$result = parser.getSymbolFactory().newSymbol("source",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -275,8 +299,12 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 9: // dest ::= DEST COLON ID 
             {
-              Object RESULT =null;
+              State RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		 
+					RESULT=Collection.getStateByName(id);
 					System.out.println("dest in parser"); 
 					
               CUP$parser$result = parser.getSymbolFactory().newSymbol("dest",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
@@ -286,7 +314,7 @@ class CUP$parser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // guard ::= GUARD COLON exp 
             {
-              Object RESULT =null;
+              Guard RESULT =null;
 		int exprleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
 		int exprright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
 		BinaryOperation expr = (BinaryOperation)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
@@ -295,7 +323,7 @@ class CUP$parser$actions {
 						System.out.println(g1);
 						System.out.println("guard in parser"); 
 						
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("guard",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("guard",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
@@ -309,7 +337,7 @@ class CUP$parser$actions {
 		 
 						System.out.println("action in parser"); 
 						
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("acti",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("acti",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 
@@ -329,7 +357,7 @@ class CUP$parser$actions {
 						System.out.println(bin1.toString());
 						System.out.println("exp in parser"); 
 						
-              CUP$parser$result = parser.getSymbolFactory().newSymbol("exp",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
+              CUP$parser$result = parser.getSymbolFactory().newSymbol("exp",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
 

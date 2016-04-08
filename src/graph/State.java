@@ -14,7 +14,8 @@ public class State extends Node {
 		this.name = stateName;
 		this.desc = stateDesc;
 		this.input = stateInput;
-		this.clickable = stateClickable;
+		//this.clickable = stateClickable;
+		this.clickable = new ArrayList<String>();
 	}
 
 	public String getName() {
