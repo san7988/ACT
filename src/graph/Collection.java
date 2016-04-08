@@ -37,6 +37,7 @@ public class Collection {
 	}
 	
 	public static boolean hasState(INode state){
+		System.out.println("Hello World");
 		if(stateList.contains(state))
 			return true;
 		return false;
