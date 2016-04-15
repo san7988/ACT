@@ -274,8 +274,9 @@ class CUP$parser$actions {
 		int actright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object act = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		 	
+																		System.out.println("trans in parser with vals: "+id+" "+src+" "+des);
 																		RESULT=new Transition(id,null,src,des,null,null,null);
-																		System.out.println("trans in parser"); 
+																		System.out.println("Transition executed");																		 
 																		
               CUP$parser$result = parser.getSymbolFactory().newSymbol("transition",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }

@@ -25,6 +25,7 @@ public class Transition extends Edge {
 		
 		//guard
 		int flag = 1;
+		if(guard==null) return;
 		for(i = 0;i<guard.getExpGuardList().size();i++){
 			if(guard.getExpGuardList().get(i) instanceof BinaryOperation){
 				int lFound = 0,	rFound =0;
