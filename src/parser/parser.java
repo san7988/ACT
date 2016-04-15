@@ -13,6 +13,8 @@ import graph.Operation;
 import graph.Guard;
 import graph.Collection;
 import graph.State;
+import graph.INode;
+import graph.IEdge;
 import graph.StateChart;
 import graph.Transition;
 import java_cup.runtime.XMLElement;
@@ -172,6 +174,15 @@ class CUP$parser$actions {
 		 
 														 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
 														 System.out.println("Yoooo"); 
+														 System.out.println("Here statechart says:\n\tNumber of States = "+sc.getNumberOfNodes()+"\n\tNo of Transitions = "+sc.getNumberOfEdges());
+														 System.out.println("States are as follows:");
+														 for(INode inode : sc.getStateSet()){
+	 														System.out.print(State.class.cast(inode).getName()+",");
+	 													 }
+														 System.out.println("\n\nTransitions are as follows:");	 													 
+														 for(IEdge iedge : sc.getTransitionSet()){
+	 														System.out.println(Transition.class.cast(iedge).getName());
+	 													 } 
 														 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("system",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -275,8 +286,9 @@ class CUP$parser$actions {
 		Object act = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		 	
 																		System.out.println("trans in parser with vals: "+id+" "+src+" "+des);
-																		RESULT=new Transition(id,null,src,des,null,null,null);
-																		System.out.println("Transition executed");																		 
+																		Transition transition=new Transition(id,null,src,des,null,null,null);
+																		RESULT = transition;
+																		System.out.println("Transition executed; It's name is: "+transition.getName());																		 
 																		
               CUP$parser$result = parser.getSymbolFactory().newSymbol("transition",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-8)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }

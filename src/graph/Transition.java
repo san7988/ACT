@@ -10,7 +10,7 @@ public class Transition extends Edge {
 	
 	public Transition(String name,String description,INode stateFrom, INode stateTo,String trigger,Guard guard, String action) throws Exception {
 		super(stateFrom, stateTo);
-	
+		this.name = name;
 		//trigger qualification check
 		int i;
 		//System.out.println("Check: "+trigger+" "+State.class.cast(stateFrom).getClickable().get(0));

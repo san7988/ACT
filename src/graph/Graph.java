@@ -61,12 +61,16 @@ public class Graph implements IGraph {
 		this.mNodes.remove(node);
 		return node;
 	}
-
+	
 	@Override
 	public int getNumberOfNodes() {
 		return this.mNodes.size();
 	}
 
+	public int getNumberofEdges(){
+		return this.mEdges.size();
+	}
+	
 	@Override
 	public IEdge addEdge(IEdge edge) {
 		if(this.hasEdge(edge)) {
