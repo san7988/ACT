@@ -1,7 +1,13 @@
 SYSTEM : sys{
 	
-	STATE : s1{}
-	STATE : s2{} 
+	STATE : s1{
+		DESC : d1
+		INPUT : i1,i2,i3
+	}
+	STATE : s2{
+		DESC : d2
+		INPUT : i4,i5
+	} 
 	
 	TRANSITION : t1{
 		SOURCE : s1

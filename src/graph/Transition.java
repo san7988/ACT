@@ -13,19 +13,27 @@ public class Transition extends Edge {
 		this.name = name;
 		//trigger qualification check
 		int i;
+		
+		
 		//System.out.println("Check: "+trigger+" "+State.class.cast(stateFrom).getClickable().get(0));
-		for(i = 0;i< State.class.cast(stateFrom).getClickable().size();i++)
+		for(i = 0;i< 0;i++){
 			if(trigger.equals(State.class.cast(stateFrom).getClickable().get(i))){
 				this.trigger = trigger;
 				//System.out.println("Check Inside");
 				break;
 			}
-		if(i==State.class.cast(stateFrom).getClickable().size())
-			System.out.println("Trigger for the transition "+this.getEdgeId()+"; Name- "+this.getName()+"; Desc- "+this.getDescription()+" could not be added\n\t BECAUSE "+trigger+" is not a clickable object of state "+State.class.cast(stateFrom).getName());
+		}
 		
+		if(i==State.class.cast(stateFrom).getClickable().size())
+			System.out.println("Trigger for the transition "+this.getEdgeId()+"; Name- "+this.getName()+"; Desc- "+this.getDescription()+" could not be added\n\t BECAUSE "+trigger+" is not a clickable object of state "+State.class.cast(stateFrom).getName());		
 		//guard
 		int flag = 1;
-		if(guard==null) return;
+		if(guard ==null) {
+			System.out.println("Check");
+			return;
+		}
+		else
+			System.out.println(guard.toString());
 		for(i = 0;i<guard.getExpGuardList().size();i++){
 			if(guard.getExpGuardList().get(i) instanceof BinaryOperation){
 				int lFound = 0,	rFound =0;

@@ -3,7 +3,7 @@ import java_cup.runtime.*;
 import stateChartToGraph.*;
 import graph.*;
 import java.lang.System;
-enum TokenType{SYSTEM,STATES,STATE,STATEID,TRANSITION,GUARD,TRIGGER,ACTION,TRANSITIONID,ID,LOGEXPR,CLICKELE,LPAREN,
+enum TokenType{SYSTEM,STATES,STATE,STATEID,DESC,INPUT,CLICKABLE,TRANSITION,GUARD,TRIGGER,ACTION,TRANSITIONID,ID,LOGEXPR,CLICKELE,LPAREN,
 					RPAREN,LBRACKET,RBRACKET,LBRACES,RBRACES,LANGBRACKET,RANGBRACKET}
 
 
@@ -265,26 +265,36 @@ class Yylex implements java_cup.runtime.Scanner {
 		/* 46 */ YY_NO_ANCHOR,
 		/* 47 */ YY_NO_ANCHOR,
 		/* 48 */ YY_NO_ANCHOR,
-		/* 49 */ YY_NO_ANCHOR
+		/* 49 */ YY_NO_ANCHOR,
+		/* 50 */ YY_NO_ANCHOR,
+		/* 51 */ YY_NO_ANCHOR,
+		/* 52 */ YY_NO_ANCHOR,
+		/* 53 */ YY_NO_ANCHOR,
+		/* 54 */ YY_NO_ANCHOR,
+		/* 55 */ YY_NO_ANCHOR,
+		/* 56 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,130,
-"23:8,22:2,21,23:2,0,23:18,22,23:15,20:10,1,23:2,2,23:3,10,19,16,17,8,19,18," +
-"19,13,19:3,9,12,14,19:2,11,5,7,15,19:3,6,19,23:6,19:26,3,23,4,23:2,24:2")[0];
+"25:8,24:2,23,25:2,0,25:18,24,25:11,2,25:3,22:10,1,25:2,3,25:3,11,21,13,12,9" +
+",21,20,21,14,21:3,10,15,19,16,21,18,6,8,17,21:3,7,21,25:6,21:26,4,25,5,25:2" +
+",26:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,50,
-"0,1:4,2:2,1:2,3:7,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24," +
-"25,26,27,28,29,30,31,32,3,33,34,25,35")[0];
+	private int yy_rmap[] = unpackFromString(1,57,
+"0,1:5,2:2,1:2,3:9,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24," +
+"25,26,27,28,29,30,31,32,33,34,35,3,36,37,38,28,39")[0];
 
-	private int yy_nxt[][] = unpackFromString(36,25,
-"-1,1,2,3,4,16,45,46,45:2,31,45:6,32,47,45,48,5,6,7,8,-1:46,6:2,-1:7,45:16,-" +
-"1:9,45,49,33,45:6,34,45:6,-1:9,45:8,9,45:7,-1:9,45:2,10,45:13,-1:9,45:3,11," +
-"45:12,-1:9,45:12,12,45:3,-1:9,45:4,13,45:11,-1:9,45:3,14,45:12,-1:9,45:7,15" +
-",45:8,-1:9,45:2,17,45:13,-1:9,18,45:15,-1:9,45:2,19,45:13,-1:9,45:6,20,45:9" +
-",-1:9,45:3,21,45:12,-1:9,45:11,22,45:4,-1:9,45:9,23,45:6,-1:9,45:11,24,45:4" +
-",-1:9,45:3,25,45:12,-1:9,45:5,26,45:10,-1:9,45:10,39,45:5,-1:9,45:5,40,45:1" +
-"0,-1:9,45:5,27,45:10,-1:9,45:15,37,-1:9,45:2,28,45:13,-1:9,45:6,29,45:9,-1:" +
-"9,45:7,41,45:8,-1:9,42,45:15,-1:9,45:8,43,45:7,-1:9,45:2,44,45:13,-1:9,45:8" +
-",30,45:7,-1:9,45:6,35,45:9,-1:9,45:10,36,45:5,-1:9,38,45:15,-1:4");
+	private int yy_nxt[][] = unpackFromString(40,27,
+"-1,1,2,3,4,5,19,51,52,51:2,36,37,51,53,51:5,54,51,55,6,7,8,9,-1:50,7:2,-1:8" +
+",51:17,-1:10,51,56,38,51:10,39,51:3,-1:10,51:8,10,51:8,-1:10,51:2,11,51:4,1" +
+"2,51:9,-1:10,51:3,13,51:13,-1:10,51:2,14,51:14,-1:10,51:6,15,51:10,-1:10,51" +
+":4,16,51:12,-1:10,51:3,17,51:13,-1:10,51:9,18,51:7,-1:10,51:2,20,51:14,-1:1" +
+"0,21,51:16,-1:10,51:2,22,51:14,-1:10,51:11,23,51:5,-1:10,51:12,24,51:4,-1:1" +
+"0,51:3,25,51:13,-1:10,51:7,26,51:9,-1:10,51:13,27,51:3,-1:10,51:7,28,51:9,-" +
+"1:10,51:3,29,51:13,-1:10,51:5,30,51:11,-1:10,51:11,45,51:5,-1:10,51:5,46,51" +
+":11,-1:10,51:10,31,51:6,-1:10,51:5,32,51:11,-1:10,51:16,43,-1:10,51:2,33,51" +
+":14,-1:10,51:12,34,51:4,-1:10,51:9,47,51:7,-1:10,48,51:16,-1:10,51:8,49,51:" +
+"8,-1:10,51:2,50,51:14,-1:10,51:8,35,51:8,-1:10,51:12,40,51:4,-1:10,51:9,41," +
+"51:7,-1:10,51:11,42,51:5,-1:10,44,51:16,-1:4");
 
 	public java_cup.runtime.Symbol next_token ()
 		throws java.io.IOException {
@@ -331,27 +341,27 @@ class Yylex implements java_cup.runtime.Scanner {
 					yy_to_mark();
 					switch (yy_last_accept_state) {
 					case 0:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -2:
 						break;
 					case 1:
-						{ System.out.println("colon");return new Symbol(sym.COLON); }
+						{ System.out.println("Lex: colon");return new Symbol(sym.COLON); }
 					case -3:
 						break;
 					case 2:
-						{ System.out.println("equal");return new Symbol(sym.EQUAL); }
+						{ System.out.println("Lex: comma");return new Symbol(sym.COMMA); }
 					case -4:
 						break;
 					case 3:
-						{ System.out.println("{");return new Symbol(sym.LBRACE); }
+						{ System.out.println("Lex: equal");return new Symbol(sym.EQUAL); }
 					case -5:
 						break;
 					case 4:
-						{ System.out.println("}");return new Symbol(sym.RBRACE); }
+						{ System.out.println("Lex: {");return new Symbol(sym.LBRACE); }
 					case -6:
 						break;
 					case 5:
-						{ }
+						{ System.out.println("Lex: }");return new Symbol(sym.RBRACE); }
 					case -7:
 						break;
 					case 6:
@@ -359,176 +369,204 @@ class Yylex implements java_cup.runtime.Scanner {
 					case -8:
 						break;
 					case 7:
-						{System.out.println("Illegal character: <" + yytext() + ">");}
+						{ }
 					case -9:
 						break;
 					case 8:
-						
+						{System.out.println("Lex: Illegal character: <" + yytext() + ">");}
 					case -10:
 						break;
 					case 9:
-						{ System.out.println("action");return new Symbol(sym.ACTI); }
+						
 					case -11:
 						break;
 					case 10:
-						{ System.out.println("dest");return new Symbol(sym.DEST); }
+						{ System.out.println("Lex: action");return new Symbol(sym.ACTI); }
 					case -12:
 						break;
 					case 11:
-						{ System.out.println("state");return new Symbol(sym.STATE); }
+						{ System.out.println("Lex: dest");return new Symbol(sym.DEST); }
 					case -13:
 						break;
 					case 12:
-						{ System.out.println("guard");return new Symbol(sym.GUARD); }
+						{ System.out.println("Lex: desc");return new Symbol(sym.DESC); }
 					case -14:
 						break;
 					case 13:
-						{ System.out.println("system");return new Symbol(sym.SYSTEM); }
+						{ System.out.println("Lex: state");return new Symbol(sym.STATE); }
 					case -15:
 						break;
 					case 14:
-						{ System.out.println("source");return new Symbol(sym.SOURCE); }
+						{ System.out.println("Lex: input");return new Symbol(sym.INPUT); }
 					case -16:
 						break;
 					case 15:
-						{ System.out.println("transition");return new Symbol(sym.TRANSITION); }
+						{ System.out.println("Lex: guard");return new Symbol(sym.GUARD); }
 					case -17:
 						break;
 					case 16:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{ System.out.println("Lex: system");return new Symbol(sym.SYSTEM); }
 					case -18:
 						break;
 					case 17:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{ System.out.println("Lex: source");return new Symbol(sym.SOURCE); }
 					case -19:
 						break;
 					case 18:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{ System.out.println("Lex: transition");return new Symbol(sym.TRANSITION); }
 					case -20:
 						break;
 					case 19:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -21:
 						break;
 					case 20:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -22:
 						break;
 					case 21:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -23:
 						break;
 					case 22:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -24:
 						break;
 					case 23:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -25:
 						break;
 					case 24:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -26:
 						break;
 					case 25:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -27:
 						break;
 					case 26:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -28:
 						break;
 					case 27:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -29:
 						break;
 					case 28:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -30:
 						break;
 					case 29:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -31:
 						break;
 					case 30:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -32:
 						break;
 					case 31:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -33:
 						break;
 					case 32:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -34:
 						break;
 					case 33:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -35:
 						break;
 					case 34:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -36:
 						break;
 					case 35:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -37:
 						break;
 					case 36:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -38:
 						break;
 					case 37:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -39:
 						break;
 					case 38:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -40:
 						break;
 					case 39:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -41:
 						break;
 					case 40:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -42:
 						break;
 					case 41:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -43:
 						break;
 					case 42:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -44:
 						break;
 					case 43:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -45:
 						break;
 					case 44:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -46:
 						break;
 					case 45:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -47:
 						break;
 					case 46:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -48:
 						break;
 					case 47:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -49:
 						break;
 					case 48:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -50:
 						break;
 					case 49:
-						{System.out.println("string");return new Symbol(sym.ID, new String(yytext()));}
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -51:
+						break;
+					case 50:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -52:
+						break;
+					case 51:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -53:
+						break;
+					case 52:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -54:
+						break;
+					case 53:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -55:
+						break;
+					case 54:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -56:
+						break;
+					case 55:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -57:
+						break;
+					case 56:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -58:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);

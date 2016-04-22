@@ -18,11 +18,11 @@ parser code {:
 	}
 :}
 
-terminal LBRACE,RBRACE,COLON,EQUAL,SYSTEM,STATE,TRANSITION,SOURCE,DEST,GUARD,ACTI;
+terminal LBRACE,RBRACE,COLON,COMMA,EQUAL,SYSTEM,STATE,DESC,INPUT,TRANSITION,SOURCE,DEST,GUARD,ACTI;
 terminal String ID;
 terminal Integer NUMBER;
 
-non terminal states,transitions,acti;
+non terminal states,transitions,acti,inputs;
 non terminal BinaryOperation exp;
 non terminal Guard guard;
 non terminal State source;
@@ -31,69 +31,75 @@ non terminal State state;
 non terminal StateChart system;
 non terminal Transition transition;
 
-system ::= SYSTEM COLON ID LBRACE states:s1 transitions RBRACE {: 
-														 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
-														 System.out.println("Yoooo"); 
-														 System.out.println("Here statechart says:\n\tNumber of States = "+sc.getNumberOfNodes()+"\n\tNo of Transitions = "+sc.getNumberOfEdges());
-														 System.out.println("States are as follows:");
-														 for(INode inode : sc.getStateSet()){
-	 														System.out.print(State.class.cast(inode).getName()+",");
-	 													 }
-														 System.out.println("\n\nTransitions are as follows:");	 													 
-														 for(IEdge iedge : sc.getTransitionSet()){
-	 														System.out.println(Transition.class.cast(iedge).getName());
-	 													 } 
-														 :};
+system ::= SYSTEM COLON ID LBRACE states transitions RBRACE  {: 
+				 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
+				 System.out.println("Parser: Statechart successfully created."); 
+				 System.out.println("Here statechart says:\n\tNumber of States = "+sc.getNumberOfNodes()+"\n\tNo of Transitions = "+sc.getNumberOfEdges());
+				 System.out.println("States are as follows:");
+				 for(INode inode : sc.getStateSet()){
+					System.out.print(State.class.cast(inode).getName()+",");
+				 }
+				 System.out.println("\n\nTransitions are as follows:");	 													 
+				 for(IEdge iedge : sc.getTransitionSet()){
+					System.out.println(Transition.class.cast(iedge).getName());
+				 } 
+				 :};
 
-states ::= states state:sta {: 
-					Collection.addState(sta);
-					System.out.println("Yo"); 
-					:}
-					| ;
-
-state ::= STATE COLON ID:id LBRACE RBRACE {: 
-								RESULT=new State(id,null,null,null);
-								System.out.println("state in parser"); 
+states ::= states state:sta {:
+									 Collection.addState(sta);
+									 System.out.println("Parser: State "+sta.getName()+" added to Collection"); 
+									 :}
+									  | ;
+state ::= STATE COLON ID:id1 LBRACE DESC COLON ID:id2 INPUT COLON inputs RBRACE {: 
+								RESULT=new State(id1,id2,Collection.getInputList(),null);
+								System.out.println("Parser: State "+id1+" Identified"); 
 								:} ;
+inputs ::= inputs COMMA ID:id1 {:
+									Collection.addInput(id1);
+									System.out.println("Parser: Input "+id1+" of a State added");
+										:}
+								| ID:id2 {:
+									Collection.addInput(id2);
+									System.out.println("Parser: Input "+id2+" of a State added");
+									:};
 
 transitions ::= transitions transition:trans {:
 									 Collection.addTransition(trans);
-									 System.out.println("Yo"); 
+									 System.out.println("Parser: Transition "+trans.getName()+" added to Collection"); 
 									 :}
 									  | ;
 
 transition ::= TRANSITION COLON ID:id LBRACE source:src dest:des guard:grd acti:act RBRACE {: 	
-																		System.out.println("trans in parser with vals: "+id+" "+src+" "+des);
 																		Transition transition=new Transition(id,null,src,des,null,null,null);
 																		RESULT = transition;
-																		System.out.println("Transition executed; It's name is: "+transition.getName());																		 
+																		System.out.println("Parser: Transition "+transition.getName()+" identified");																		 
 																		:} ;
 
 source ::= SOURCE COLON ID:id {: 
 					RESULT=Collection.getStateByName(id);
-					System.out.println("src in parser"); 
+					System.out.println("Parser: Source of a Transition Identified as "+id); 
 					:} ;
 
 dest ::= DEST COLON ID:id {: 
 					RESULT=Collection.getStateByName(id);
-					System.out.println("dest in parser"); 
+					System.out.println("Parser: Destination of a Transition Identified as "+id); 
 					:} ;
 
 guard ::= GUARD COLON exp:expr {: 
 						Guard g1=new Guard(Collection.getOperationList());
 						System.out.println(g1);
-						System.out.println("guard in parser"); 
+						System.out.println("Parser: Guard of a transition Identified"); 
 						:} ;
 
 acti ::= ACTI COLON exp:expr {: 
-						System.out.println("action in parser"); 
+						System.out.println("Parser: Action of a transition Identified"); 
 						:} ;
 
 exp ::= ID:id1 EQUAL ID:id2 {: 
 						Operation bin1=new BinaryOperation(id1,"=",id2);
 						Collection.addOperation(bin1);
 						System.out.println(bin1.toString());
-						System.out.println("exp in parser"); 
+						System.out.println("Parser: Expression added to Collection"); 
 						:} ;
 
 

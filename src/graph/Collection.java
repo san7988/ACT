@@ -6,9 +6,11 @@ import java.util.List;
 
 public class Collection {
 	private static ArrayList<State> stateList = new ArrayList<State>();
+	private static ArrayList<String> inputList = new ArrayList<String>();
 	private static ArrayList<Transition> transitionList = new ArrayList<Transition>();
 	private static ArrayList<Operation> operationList = new ArrayList<Operation>();
 	private static ArrayList<Guard> guardList = new ArrayList<Guard>();
+	
 	
 	public static List<State> getStateList() {
 		System.out.println("Get State List");
@@ -68,4 +70,11 @@ public class Collection {
 			return Collection.stateList.get(i);
 		return null;
 	}
+	public static void addInput(String str){
+		inputList.add(str);
+		System.out.println(str+" addded to Collection");
+	}
+	public static ArrayList<String> getInputList(){
+		return inputList;
+	} 
 }
