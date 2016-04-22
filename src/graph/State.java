@@ -6,16 +6,20 @@ import java.util.List;
 public class State extends Node {
 	private String name;
 	private String desc;
-	ArrayList<String> input;
+	ArrayList<String> input = new ArrayList<String>();
 	//private boolean[] inputBool;	//unary
-	ArrayList<String> clickable;
+	ArrayList<String> clickable = new ArrayList<String>();
 	public State(String stateName, String stateDesc, ArrayList<String> stateInput, ArrayList<String> stateClickable) {
 		super();
 		this.name = stateName;
 		this.desc = stateDesc;
-		this.input = stateInput;
-		//this.clickable = stateClickable;
-		this.clickable = new ArrayList<String>();
+		for(int i=0;i<stateInput.size();i++){
+			this.input.add(stateInput.get(i));	
+		}
+		stateInput.clear();
+		for(int i=0;i<stateClickable.size();i++)
+			this.clickable.add(stateClickable.get(i));		
+		stateClickable.clear();
 	}
 
 	public String getName() {

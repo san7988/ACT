@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Collection {
 	private static ArrayList<State> stateList = new ArrayList<State>();
+	private static ArrayList<String> idList = new ArrayList<String>();
 	private static ArrayList<String> inputList = new ArrayList<String>();
+	private static ArrayList<String> clickableList = new ArrayList<String>();	
 	private static ArrayList<Transition> transitionList = new ArrayList<Transition>();
 	private static ArrayList<Operation> operationList = new ArrayList<Operation>();
 	private static ArrayList<Guard> guardList = new ArrayList<Guard>();
@@ -70,11 +72,29 @@ public class Collection {
 			return Collection.stateList.get(i);
 		return null;
 	}
-	public static void addInput(String str){
-		inputList.add(str);
+	public static void addId(String str){
+		idList.add(str);
 		System.out.println(str+" addded to Collection");
 	}
+	public static ArrayList<String> getIdList(){
+		return idList;
+	}
+	public static void addInputListFromIdList(){
+		for(int i=0;i<idList.size();i++)
+			inputList.add(idList.get(i));		
+		idList.clear();
+		System.out.println("InputList: "+inputList.toString());
+	}
+	public static void addClickableListFromIdList(){
+		for(int i=0;i<idList.size();i++)
+			clickableList.add(idList.get(i));		
+		idList.clear();
+		System.out.println("ClickableList: "+clickableList.toString());
+	}	
 	public static ArrayList<String> getInputList(){
 		return inputList;
-	} 
+	}
+	public static ArrayList<String> getClickableList(){
+		return clickableList;
+	}
 }

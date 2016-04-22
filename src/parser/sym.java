@@ -10,22 +10,25 @@ public class sym {
   /* terminals */
   public static final int INPUT = 10;
   public static final int DESC = 9;
-  public static final int SOURCE = 12;
+  public static final int SOURCE = 13;
   public static final int RBRACE = 3;
+  public static final int TRIGGER = 15;
   public static final int EQUAL = 6;
+  public static final int CLICKABLE = 11;
   public static final int COLON = 4;
   public static final int LBRACE = 2;
-  public static final int ID = 16;
+  public static final int ID = 19;
   public static final int COMMA = 5;
-  public static final int NUMBER = 17;
+  public static final int NUMBER = 20;
   public static final int EOF = 0;
   public static final int SYSTEM = 7;
+  public static final int DOT = 18;
   public static final int error = 1;
-  public static final int DEST = 13;
-  public static final int ACTI = 15;
+  public static final int DEST = 14;
+  public static final int ACTI = 17;
   public static final int STATE = 8;
-  public static final int GUARD = 14;
-  public static final int TRANSITION = 11;
+  public static final int GUARD = 16;
+  public static final int TRANSITION = 12;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
@@ -38,11 +41,14 @@ public class sym {
   "STATE",
   "DESC",
   "INPUT",
+  "CLICKABLE",
   "TRANSITION",
   "SOURCE",
   "DEST",
+  "TRIGGER",
   "GUARD",
   "ACTI",
+  "DOT",
   "ID",
   "NUMBER"
   };

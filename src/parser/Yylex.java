@@ -4,7 +4,7 @@ import stateChartToGraph.*;
 import graph.*;
 import java.lang.System;
 enum TokenType{SYSTEM,STATES,STATE,STATEID,DESC,INPUT,CLICKABLE,TRANSITION,GUARD,TRIGGER,ACTION,TRANSITIONID,ID,LOGEXPR,CLICKELE,LPAREN,
-					RPAREN,LBRACKET,RBRACKET,LBRACES,RBRACES,LANGBRACKET,RANGBRACKET}
+					RPAREN,LBRACKET,RBRACKET,LBRACES,RBRACES,LANGBRACKET,RANGBRACKET,COMMA}
 
 
 class Yylex implements java_cup.runtime.Scanner {
@@ -272,29 +272,49 @@ class Yylex implements java_cup.runtime.Scanner {
 		/* 53 */ YY_NO_ANCHOR,
 		/* 54 */ YY_NO_ANCHOR,
 		/* 55 */ YY_NO_ANCHOR,
-		/* 56 */ YY_NO_ANCHOR
+		/* 56 */ YY_NO_ANCHOR,
+		/* 57 */ YY_NO_ANCHOR,
+		/* 58 */ YY_NO_ANCHOR,
+		/* 59 */ YY_NO_ANCHOR,
+		/* 60 */ YY_NO_ANCHOR,
+		/* 61 */ YY_NO_ANCHOR,
+		/* 62 */ YY_NO_ANCHOR,
+		/* 63 */ YY_NO_ANCHOR,
+		/* 64 */ YY_NO_ANCHOR,
+		/* 65 */ YY_NO_ANCHOR,
+		/* 66 */ YY_NO_ANCHOR,
+		/* 67 */ YY_NO_ANCHOR,
+		/* 68 */ YY_NO_ANCHOR,
+		/* 69 */ YY_NO_ANCHOR,
+		/* 70 */ YY_NO_ANCHOR,
+		/* 71 */ YY_NO_ANCHOR
 	};
 	private int yy_cmap[] = unpackFromString(1,130,
-"25:8,24:2,23,25:2,0,25:18,24,25:11,2,25:3,22:10,1,25:2,3,25:3,11,21,13,12,9" +
-",21,20,21,14,21:3,10,15,19,16,21,18,6,8,17,21:3,7,21,25:6,21:26,4,25,5,25:2" +
-",26:2")[0];
+"29:8,28:2,27,29:2,0,29:18,28,29:11,2,29,3,29,26:10,1,29:2,4,29:3,12,21,14,1" +
+"3,10,25,24,25,15,25,20,19,11,16,23,17,25,22,7,9,18,25:3,8,25,29:6,25:26,5,2" +
+"9,6,29:2,30:2")[0];
 
-	private int yy_rmap[] = unpackFromString(1,57,
-"0,1:5,2:2,1:2,3:9,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24," +
-"25,26,27,28,29,30,31,32,33,34,35,3,36,37,38,28,39")[0];
+	private int yy_rmap[] = unpackFromString(1,72,
+"0,1:6,2:2,1:2,3:11,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24" +
+",25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,3,47,48," +
+"49,50,33,51")[0];
 
-	private int yy_nxt[][] = unpackFromString(40,27,
-"-1,1,2,3,4,5,19,51,52,51:2,36,37,51,53,51:5,54,51,55,6,7,8,9,-1:50,7:2,-1:8" +
-",51:17,-1:10,51,56,38,51:10,39,51:3,-1:10,51:8,10,51:8,-1:10,51:2,11,51:4,1" +
-"2,51:9,-1:10,51:3,13,51:13,-1:10,51:2,14,51:14,-1:10,51:6,15,51:10,-1:10,51" +
-":4,16,51:12,-1:10,51:3,17,51:13,-1:10,51:9,18,51:7,-1:10,51:2,20,51:14,-1:1" +
-"0,21,51:16,-1:10,51:2,22,51:14,-1:10,51:11,23,51:5,-1:10,51:12,24,51:4,-1:1" +
-"0,51:3,25,51:13,-1:10,51:7,26,51:9,-1:10,51:13,27,51:3,-1:10,51:7,28,51:9,-" +
-"1:10,51:3,29,51:13,-1:10,51:5,30,51:11,-1:10,51:11,45,51:5,-1:10,51:5,46,51" +
-":11,-1:10,51:10,31,51:6,-1:10,51:5,32,51:11,-1:10,51:16,43,-1:10,51:2,33,51" +
-":14,-1:10,51:12,34,51:4,-1:10,51:9,47,51:7,-1:10,48,51:16,-1:10,51:8,49,51:" +
-"8,-1:10,51:2,50,51:14,-1:10,51:8,35,51:8,-1:10,51:12,40,51:4,-1:10,51:9,41," +
-"51:7,-1:10,51:11,42,51:5,-1:10,44,51:16,-1:4");
+	private int yy_nxt[][] = unpackFromString(52,31,
+"-1,1,2,3,4,5,6,22,65,66,65:2,43,44,67,68,65:8,69,65,70,7,8,9,10,-1:58,8:2,-" +
+"1:9,65:20,-1:11,65,71,45,65:13,46,65:3,-1:11,65:8,11,65:11,-1:11,65:2,12,65" +
+":4,13,65:12,-1:11,65:3,14,65:16,-1:11,65:2,15,65:17,-1:11,65:6,16,65:13,-1:" +
+"11,65:4,17,65:15,-1:11,65:3,18,65:16,-1:11,65:15,19,65:4,-1:11,65:3,20,65:1" +
+"6,-1:11,65:9,21,65:10,-1:11,65:2,23,65:17,-1:11,24,65:19,-1:11,65:2,25,65:1" +
+"7,-1:11,65:11,26,65:8,-1:11,65:15,27,65:4,-1:11,65:3,28,65:16,-1:11,65:7,29" +
+",65:12,-1:11,65:3,30,65:16,-1:11,65:12,31,65:7,-1:11,65:16,32,65:3,-1:11,65" +
+":7,33,65:12,-1:11,65:3,34,65:16,-1:11,65:5,35,65:14,-1:11,65:11,53,65:8,-1:" +
+"11,65:5,54,65:2,55,65:11,-1:11,65:8,56,65:11,-1:11,65:10,36,65:9,-1:11,65:5" +
+",37,65:14,-1:11,65:19,51,-1:11,65:2,38,65:17,-1:11,65:15,39,65:4,-1:11,65:9" +
+",57,65:10,-1:11,65:17,58,65:2,-1:11,65:7,59,65:12,-1:11,60,65:19,-1:11,65:1" +
+"7,40,65:2,-1:11,65:13,61,65:6,-1:11,65:8,62,65:11,-1:11,65:5,63,65:14,-1:11" +
+",65:2,64,65:17,-1:11,65:14,41,65:5,-1:11,65:8,42,65:11,-1:11,65:15,47,65:4," +
+"-1:11,65:12,48,65:7,-1:11,65:9,49,65:10,-1:11,65:11,50,65:8,-1:11,52,65:19," +
+"-1:4");
 
 	public java_cup.runtime.Symbol next_token ()
 		throws java.io.IOException {
@@ -353,19 +373,19 @@ class Yylex implements java_cup.runtime.Scanner {
 					case -4:
 						break;
 					case 3:
-						{ System.out.println("Lex: equal");return new Symbol(sym.EQUAL); }
+						{ System.out.println("Lex: dot");return new Symbol(sym.DOT); }
 					case -5:
 						break;
 					case 4:
-						{ System.out.println("Lex: {");return new Symbol(sym.LBRACE); }
+						{ System.out.println("Lex: equal");return new Symbol(sym.EQUAL); }
 					case -6:
 						break;
 					case 5:
-						{ System.out.println("Lex: }");return new Symbol(sym.RBRACE); }
+						{ System.out.println("Lex: {");return new Symbol(sym.LBRACE); }
 					case -7:
 						break;
 					case 6:
-						{ }
+						{ System.out.println("Lex: }");return new Symbol(sym.RBRACE); }
 					case -8:
 						break;
 					case 7:
@@ -373,59 +393,59 @@ class Yylex implements java_cup.runtime.Scanner {
 					case -9:
 						break;
 					case 8:
-						{System.out.println("Lex: Illegal character: <" + yytext() + ">");}
+						{ }
 					case -10:
 						break;
 					case 9:
-						
+						{System.out.println("Lex: Illegal character: <" + yytext() + ">");}
 					case -11:
 						break;
 					case 10:
-						{ System.out.println("Lex: action");return new Symbol(sym.ACTI); }
+						
 					case -12:
 						break;
 					case 11:
-						{ System.out.println("Lex: dest");return new Symbol(sym.DEST); }
+						{ System.out.println("Lex: action");return new Symbol(sym.ACTI); }
 					case -13:
 						break;
 					case 12:
-						{ System.out.println("Lex: desc");return new Symbol(sym.DESC); }
+						{ System.out.println("Lex: dest");return new Symbol(sym.DEST); }
 					case -14:
 						break;
 					case 13:
-						{ System.out.println("Lex: state");return new Symbol(sym.STATE); }
+						{ System.out.println("Lex: desc");return new Symbol(sym.DESC); }
 					case -15:
 						break;
 					case 14:
-						{ System.out.println("Lex: input");return new Symbol(sym.INPUT); }
+						{ System.out.println("Lex: state");return new Symbol(sym.STATE); }
 					case -16:
 						break;
 					case 15:
-						{ System.out.println("Lex: guard");return new Symbol(sym.GUARD); }
+						{ System.out.println("Lex: input");return new Symbol(sym.INPUT); }
 					case -17:
 						break;
 					case 16:
-						{ System.out.println("Lex: system");return new Symbol(sym.SYSTEM); }
+						{ System.out.println("Lex: guard");return new Symbol(sym.GUARD); }
 					case -18:
 						break;
 					case 17:
-						{ System.out.println("Lex: source");return new Symbol(sym.SOURCE); }
+						{ System.out.println("Lex: system");return new Symbol(sym.SYSTEM); }
 					case -19:
 						break;
 					case 18:
-						{ System.out.println("Lex: transition");return new Symbol(sym.TRANSITION); }
+						{ System.out.println("Lex: source");return new Symbol(sym.SOURCE); }
 					case -20:
 						break;
 					case 19:
-						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+						{ System.out.println("Lex: trigger");return new Symbol(sym.TRIGGER); }
 					case -21:
 						break;
 					case 20:
-						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+						{ System.out.println("Lex: clickable");return new Symbol(sym.CLICKABLE); }
 					case -22:
 						break;
 					case 21:
-						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+						{ System.out.println("Lex: transition");return new Symbol(sym.TRANSITION); }
 					case -23:
 						break;
 					case 22:
@@ -567,6 +587,66 @@ class Yylex implements java_cup.runtime.Scanner {
 					case 56:
 						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
 					case -58:
+						break;
+					case 57:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -59:
+						break;
+					case 58:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -60:
+						break;
+					case 59:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -61:
+						break;
+					case 60:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -62:
+						break;
+					case 61:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -63:
+						break;
+					case 62:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -64:
+						break;
+					case 63:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -65:
+						break;
+					case 64:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -66:
+						break;
+					case 65:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -67:
+						break;
+					case 66:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -68:
+						break;
+					case 67:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -69:
+						break;
+					case 68:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -70:
+						break;
+					case 69:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -71:
+						break;
+					case 70:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -72:
+						break;
+					case 71:
+						{System.out.println("Lex: string/ID");return new Symbol(sym.ID, new String(yytext()));}
+					case -73:
 						break;
 					default:
 						yy_error(YY_E_INTERNAL,false);

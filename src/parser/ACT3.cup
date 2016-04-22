@@ -18,11 +18,11 @@ parser code {:
 	}
 :}
 
-terminal LBRACE,RBRACE,COLON,COMMA,EQUAL,SYSTEM,STATE,DESC,INPUT,TRANSITION,SOURCE,DEST,GUARD,ACTI;
+terminal LBRACE,RBRACE,COLON,COMMA,EQUAL,SYSTEM,STATE,DESC,INPUT,CLICKABLE,TRANSITION,SOURCE,DEST,TRIGGER,GUARD,ACTI,DOT;
 terminal String ID;
 terminal Integer NUMBER;
 
-non terminal states,transitions,acti,inputs;
+non terminal states,transitions,acti,idList,inputsAll,clickableAll;
 non terminal BinaryOperation exp;
 non terminal Guard guard;
 non terminal State source;
@@ -30,6 +30,7 @@ non terminal State dest;
 non terminal State state;
 non terminal StateChart system;
 non terminal Transition transition;
+non terminal String trigger;
 
 system ::= SYSTEM COLON ID LBRACE states transitions RBRACE  {: 
 				 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
@@ -50,17 +51,26 @@ states ::= states state:sta {:
 									 System.out.println("Parser: State "+sta.getName()+" added to Collection"); 
 									 :}
 									  | ;
-state ::= STATE COLON ID:id1 LBRACE DESC COLON ID:id2 INPUT COLON inputs RBRACE {: 
-								RESULT=new State(id1,id2,Collection.getInputList(),null);
+state ::= STATE COLON ID:id1 LBRACE DESC COLON ID:id2 inputsAll clickableAll RBRACE {: 
+								//System.out.println("Parser: Values of state"+ Collection.getInputList()+" "+Collection.getClickableList());
+								RESULT=new State(id1,id2,Collection.getInputList(),Collection.getClickableList());
 								System.out.println("Parser: State "+id1+" Identified"); 
 								:} ;
-inputs ::= inputs COMMA ID:id1 {:
-									Collection.addInput(id1);
-									System.out.println("Parser: Input "+id1+" of a State added");
+inputsAll ::= INPUT COLON idList {:
+									Collection.addInputListFromIdList();
+									System.out.println("Parser: InputList Identified");
+								:};
+clickableAll ::= CLICKABLE COLON idList {:
+									Collection.addClickableListFromIdList();
+									System.out.println("Parser: ClickableList Identified");
+								:};
+idList ::= idList COMMA ID:id1 {:
+									Collection.addId(id1);
+									System.out.println("Parser: Id "+id1+" identified in a State and added");
 										:}
 								| ID:id2 {:
-									Collection.addInput(id2);
-									System.out.println("Parser: Input "+id2+" of a State added");
+									Collection.addId(id2);
+									System.out.println("Parser: Id "+id2+" identified in a State and added");
 									:};
 
 transitions ::= transitions transition:trans {:
@@ -69,11 +79,11 @@ transitions ::= transitions transition:trans {:
 									 :}
 									  | ;
 
-transition ::= TRANSITION COLON ID:id LBRACE source:src dest:des guard:grd acti:act RBRACE {: 	
-																		Transition transition=new Transition(id,null,src,des,null,null,null);
+transition ::= TRANSITION COLON ID:id LBRACE source:src dest:des trigger:trig guard:grd acti:act RBRACE {: 	
+																		Transition transition=new Transition(id,null,src,des,trig,null,null);
 																		RESULT = transition;
-																		System.out.println("Parser: Transition "+transition.getName()+" identified");																		 
-																		:} ;
+																		System.out.println("Parser: Transition "+transition.getName()+" Identified"); 
+									 :};
 
 source ::= SOURCE COLON ID:id {: 
 					RESULT=Collection.getStateByName(id);
@@ -83,6 +93,11 @@ source ::= SOURCE COLON ID:id {:
 dest ::= DEST COLON ID:id {: 
 					RESULT=Collection.getStateByName(id);
 					System.out.println("Parser: Destination of a Transition Identified as "+id); 
+					:} ;
+
+trigger ::= TRIGGER COLON ID:id {: 
+					RESULT=id;
+					System.out.println("Parser: Trigger of a Transition Identified as "+id); 
 					:} ;
 
 guard ::= GUARD COLON exp:expr {: 
