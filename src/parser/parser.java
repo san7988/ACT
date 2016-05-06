@@ -17,6 +17,7 @@ import graph.INode;
 import graph.IEdge;
 import graph.StateChart;
 import graph.Transition;
+import graph.DFSRecursionTesting;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20150930 (SVN rev 66) generated parser.
@@ -197,6 +198,10 @@ class CUP$parser$actions {
 				 for(IEdge iedge : sc.getTransitionSet()){
 					System.out.println(Transition.class.cast(iedge).getName());
 				 } 
+				 System.out.println("Parser: Entering Front End Path Generation");
+				 sc.setRoot(Collection.getStateById(0));
+				 DFSRecursionTesting test = new DFSRecursionTesting();
+				 test.dfs(sc, sc.getRoot());
 				 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("system",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
@@ -360,6 +365,7 @@ class CUP$parser$actions {
 		int actright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
 		Object act = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
 		 	
+																		//System.out.println("Parser Testing: Transition just Identified");
 																		Transition transition=new Transition(id,null,src,des,trig,null,null);
 																		RESULT = transition;
 																		System.out.println("Parser: Transition "+transition.getName()+" Identified"); 

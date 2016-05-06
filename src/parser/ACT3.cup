@@ -11,6 +11,7 @@ import graph.INode;
 import graph.IEdge;
 import graph.StateChart;
 import graph.Transition;
+import graph.DFSRecursionTesting;
 
 parser code {:
 	public static void main(String args[]) throws Exception {
@@ -44,6 +45,10 @@ system ::= SYSTEM COLON ID LBRACE states transitions RBRACE  {:
 				 for(IEdge iedge : sc.getTransitionSet()){
 					System.out.println(Transition.class.cast(iedge).getName());
 				 } 
+				 System.out.println("Parser: Entering Front End Path Generation");
+				 sc.setRoot(Collection.getStateById(0));
+				 DFSRecursionTesting test = new DFSRecursionTesting();
+				 test.dfs(sc, sc.getRoot());
 				 :};
 
 states ::= states state:sta {:
@@ -80,6 +85,7 @@ transitions ::= transitions transition:trans {:
 									  | ;
 
 transition ::= TRANSITION COLON ID:id LBRACE source:src dest:des trigger:trig guard:grd acti:act RBRACE {: 	
+																		//System.out.println("Parser Testing: Transition just Identified");
 																		Transition transition=new Transition(id,null,src,des,trig,null,null);
 																		RESULT = transition;
 																		System.out.println("Parser: Transition "+transition.getName()+" Identified"); 
