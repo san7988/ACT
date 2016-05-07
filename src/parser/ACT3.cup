@@ -37,15 +37,15 @@ system ::= SYSTEM COLON ID LBRACE states transitions RBRACE  {:
 				 StateChart sc=new StateChart(Collection.getStateList(),Collection.getTransitionList());
 				 System.out.println("Parser: Statechart successfully created."); 
 				 System.out.println("Here statechart says:\n\tNumber of States = "+sc.getNumberOfNodes()+"\n\tNo of Transitions = "+sc.getNumberOfEdges());
-				 System.out.println("States are as follows:");
+				 System.out.print("States are as follows:\n\t");
 				 for(INode inode : sc.getStateSet()){
 					System.out.print(State.class.cast(inode).getName()+",");
 				 }
-				 System.out.println("\n\nTransitions are as follows:");	 													 
+				 System.out.print("\n\nTransitions are as follows:\n\t");	 													 
 				 for(IEdge iedge : sc.getTransitionSet()){
-					System.out.println(Transition.class.cast(iedge).getName());
+					System.out.print(Transition.class.cast(iedge).getName()+",");
 				 } 
-				 System.out.println("Parser: Entering Front End Path Generation");
+				 System.out.println("\nEntering Front End Path Generation");
 				 sc.setRoot(Collection.getStateById(0));
 				 DFSRecursionTesting test = new DFSRecursionTesting();
 				 test.dfs(sc, sc.getRoot());

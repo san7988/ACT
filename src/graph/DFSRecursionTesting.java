@@ -83,10 +83,12 @@ public class DFSRecursionTesting {
 	}
 	public void print(ArrayList<Stack<IEdge>> al)
 	{
+		int count = 0;
 		//System.out.println(al.size());
 		for (int i = 0; i < al.size(); i++) {
+			System.out.print("\tPATH "+(count++)+":\t");
 			for(int j=0;j<al.get(i).size();j++){
-				System.out.print(al.get(i).get(j).getEdgeId()+" ");
+				System.out.print(Transition.class.cast(al.get(i).get(j)).getName()+" ");
 				//System.out.print("\tAddDetail:"+Transition.class.cast(al.get(i).get(j)).getTrigger()+"\t\t");
 			}
 			System.out.println();
