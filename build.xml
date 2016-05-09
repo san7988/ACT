@@ -14,7 +14,7 @@
 			<exec executable="src/parser/lexer.sh"></exec>
 		</target>
 		
-		<!-- Target to create the parser-->
+		<!-- Targettttt to create the parser-->
 		<!-- It creates the .java file for the parser -->
 		<target name="generate_parser" depends="command_exec" >
 			<java jar="${cupJar}" dir="${basedir}/src/parser" input="${basedir}/src/parser/ACT3.cup" fork="true" failonerror="true">
