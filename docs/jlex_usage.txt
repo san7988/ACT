@@ -1,15 +1,22 @@
 1) Download the JLex.jar  
-2) Save it in your system and add the path to the jar to your classpath :
+2) Add it to the project structure under the root project directory. It will not be pushed to the repo.
+The relative path of the jar is provided in the build.xml
 
-	- I saved it in : /usr/share/java/JLex.jar
-
-	- Execute this : CLASSPATH="/usr/share/java/JLex.jar:$CLASSPATH"
-			 export CLASSPATH
-
-3) prepare the java file from the jlex file as : java JLex.Main <filename>.lex
-4) Rename the java file thus created to Yylex.java as : mv ACT3.lex.java Yylex.java
-5) DOwnload the jar for cup : http://www2.cs.tum.edu/projects/cup/install.php
-6) run the cup file : java -jar java-cup-11b.jar <filename>.cup   (The jar file for cup should be in the same directory or else provde the       absolute path for the jar)
-7) step 7 creates sym.java and parser.java
-8) Compile the java files thus created for lexer and parser as : javac -cp java-cup-11b.jar -d . parser.java sym.java Yylex.java
-9) run the parser : java -cp java-cup-11b.jar ACTTest.parser
+3) Similarly download the CUP jar file and it to the project root directory.
+ The relative path is mentioned in the build.xml
+ 
+ 4) For linux based system, the lexer.sh file will be used by the build.xml. 
+ If working on a windows machine, change the lexer.sh to lexer.bat. Lexer.bat file is also  provided.
+ 
+ 5) The grammar is present in ACT3.lex
+ 
+ 6) build.xml has enough comment to make it self descriptive.
+ 
+ 7) The steps in build.xml are :
+ 
+ -> Create the lexical analyzer java file 
+ -> Cretae the parser java file
+ -> Compile the created java files for lexical analyzer and parser
+ -> Fire the generated lexical analyzer and parser with statechart as the input
+ 
+ To Do : enrich the grammar
